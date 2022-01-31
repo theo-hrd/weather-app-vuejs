@@ -14,12 +14,12 @@ cd dist
 
 git init
 git add .
-git commit -m 'deploy'
+git commit -m 'new deployment'
 
 # if you are deploying to https://<USERNAME>.github.io
 # git push -f git@github.com:<USERNAME>/<USERNAME>.github.io.git main
 
 # if you are deploying to https://<USERNAME>.github.io/<REPO>
-git push -f git@github.com:theo-hrd.github.io/weather-app-vuejs.git main:gh-pages
+git push -f git@github.com:theo-hrd/weather-app-vuejs.git main:gh-pages
 
 cd -
