@@ -13,7 +13,7 @@ cd dist
 # echo 'www.example.com' > CNAME
 
 git init
-git add .
+git add -A
 git commit -m 'new deployment'
 
 # if you are deploying to https://<USERNAME>.github.io
