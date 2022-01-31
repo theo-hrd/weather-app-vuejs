@@ -42,10 +42,23 @@
           <div class="text-2xl mt-16">
             <h2 class="font-bold mb-1 underline">Informations additionnelles:</h2>
 
-            <p>
-              Humidité: <span class="font-thin">{{ weather.current.humidity }}%</span>
+            <div class="ml-1">
+                <p>
+                    - Humidité: <span class="font-thin">{{ weather.current.humidity }}%</span> <br>                    
+                    - Vent moyen: <span class="font-thin">{{ weather.current.wind_kph }}km/h</span> <br>
+                    - Rafales: <span class="font-thin">{{ weather.current.gust_kph }}km/h</span> <br>                    
+                    - Précipitations: <span class="font-thin">{{ weather.current.precip_mm }}mm</span> <br>
+                </p>
+            </div>
 
-            </p>
+            <div>
+                <h2 class="font-bold mb-1 underline mt-4"> Qualité de l'air:</h2>
+                <p>
+                    - Monoxyde de carbone: <span class="font-thin">{{ weather.current.air_quality.co }}μg/m3</span> <br>
+                    - Dioxyde d'azote: <span class="font-thin">{{ Math.round(weather.current.air_quality.o3) }}μg/m3</span> <br>
+                    - Index de qualité de l'air: <a href="#" @click="log($event)" class="font-thin">{{ weather.current.air_quality.gb-defra-index }}</a> <br>
+                </p>
+            </div>
           </div>
         </div>
       </section>
@@ -53,18 +66,18 @@
     </div>
   </main>
 </template>
-
 <script>
 export default {
   name: 'App',  
 
   data() {
     return {
+
       today: new Date().toLocaleDateString('fr-FR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }).charAt(0).toUpperCase() + new Date().toLocaleDateString('fr-FR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }).slice(1),
       api_key: `${process.env.VUE_APP_API_KEY}`,
       url: "https://api.weatherapi.com/v1/current.json?key=",
       query: "",
-      weather: {},
+      weather: {},      
     }
   },
 
@@ -81,8 +94,11 @@ export default {
 
     setResults(res) {
       this.weather = res;
-    }
+    },
 
+    log: function() {
+      console.log(JSON.stringify(this.weather.current.air_quality));
+    }
   }
 }
 </script>
