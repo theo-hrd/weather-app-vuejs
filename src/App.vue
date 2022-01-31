@@ -56,7 +56,7 @@
                 <p>
                     - Monoxyde de carbone: <span class="font-thin">{{ weather.current.air_quality.co }}μg/m3</span> <br>
                     - Dioxyde d'azote: <span class="font-thin">{{ Math.round(weather.current.air_quality.o3) }}μg/m3</span> <br>
-                    - Index de qualité de l'air: <a href="#" @click="log($event)" class="font-thin">{{ weather.current.air_quality.gb-defra-index }}</a> <br>
+                    - Index de qualité de l'air: <span class="font-thin">{{ weather.current.air_quality["gb-defra-index"] }}</span>
                 </p>
             </div>
           </div>
@@ -77,7 +77,7 @@ export default {
       api_key: `${process.env.VUE_APP_API_KEY}`,
       url: "https://api.weatherapi.com/v1/current.json?key=",
       query: "",
-      weather: {},      
+      weather: {},
     }
   },
 
@@ -98,7 +98,8 @@ export default {
 
     log: function() {
       console.log(JSON.stringify(this.weather.current.air_quality));
-    }
+    },
+
   }
 }
 </script>
