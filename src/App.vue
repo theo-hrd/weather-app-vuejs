@@ -138,11 +138,6 @@ export default {
     setResults(res) {
       this.weather = res;
     },
-
-    log: function() {
-      console.log(JSON.stringify(this.weather.current.air_quality));
-    },
-
   }
 }
 </script>
